@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'horror_movies_app/css/index.css' %}">
+    <title>Register</title>
+</head>
+<body>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1>Register</h1>
+    <form action="/register_user" method="POST">
+        {% csrf_token %}
+        <p>Username: <input type="text" name="user_name" ></p>
+        <p>Email: <input type="text" name="email" ></p>
+        <p>Password: <input type="text" name="password" ></p>
+        <p>Confirm PW: <input type="password" name="password_conf" ></p>
+        <input type="submit" value="Register" >
+    </form>
+    <br>
+    <a href="/login_page">Login Here</a>
+</body>
+</html>

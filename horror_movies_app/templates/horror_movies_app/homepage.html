@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>     
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'horror_movies_app/css/homepage.css' %}">
+    <title>Homepage</title>
+</head>
+
+<body>
+    <nav class="navbar navbar" style="background-color: black; text-align: center; position: fixed; width: 100%;">
+        <a class="navbar-brand" href="#"><h1>Harley's Horrors</h1></a>
+        <a href="/user_profile/{{request.session.account_id}}"><h2>Profile</h2></a>
+    </nav>
+    <div class="body">
+        <!-- <form>
+            <div class="form-group">
+                <input type="text" id="inputValue">
+            </div>
+
+            <button type="submit" id="search">Search a movie</button>
+        </form> -->
+        
+        <!-- <div id="movies-searchable"></div> -->
+        <div id="movies-container"></div>
+    </div>
+    <script src="{% static 'horror_movies_app/javascript/apiTransactions.js' %}"></script>
+    <script src="{% static 'horror_movies_app/javascript/app.js' %}"></script>    
+</body>
+</html>

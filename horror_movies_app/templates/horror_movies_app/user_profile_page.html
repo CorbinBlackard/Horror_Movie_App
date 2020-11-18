@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>     
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'horror_movies_app/css/user_profile.css' %}">
+    <script>
+        /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar" style="background-color: black; border: 5px solid darkred; position: fixed; width: 100%;">
+        <a class="navbar-brand" href="/homepage"><h1>Harley's Horrors</h1></a>
+        <!-- <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Settings</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="/logout" style="color: darkred;">Profile</a>
+                <a href="/logout" style="color: darkred;">Change Picture</a>
+                <a href="/logout" style="color: darkred;">Log Out</a>
+            </div>
+        </div> -->
+        <a href="/logout" style="color: darkred;"><h3>Log Out</h3></a>
+    </nav>
+    <br>
+    <div class="body">
+        <div class="title">
+            <h1>Welcome to your profile, {{account_to_display.user_name}}</h1>
+        </div>
+        <div class="icon">
+            <div>
+                <img src="{% static 'horror_movies_app/images/spider.png' %}" style="text-align: center; width: 200px; height: 200px;">
+            </div>
+        </div> 
+
+        <h1>Movies You've watched</h1>
+        
+        <div class="content">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <!-- <th>Description</th> -->
+                        <th>Release Date</th>
+                        <th>Poster</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movies in account_to_display.movies_watched.all %}
+                        <tr class="active-row">
+                            <td><h4>{{movies.title}}</h4></td>
+                            <!-- <td>{{movies.overview}}</td> -->
+                            <td>{{movies.release_date}}</td>
+                            <td>
+                                <img src="{{movies.poster}}" alt="">
+                            </td>
+                            <td>
+                                <a href="/movies/{{movies.id}}/destroy">Remove</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+
+    <script src="{% static 'horror_movies_app/javascript/apiTransactions.js' %}"></script>
+    <script src="{% static 'horror_movies_app/javascript/usersMovies.js' %}"></script>    
+
+</body>
+</html>
+

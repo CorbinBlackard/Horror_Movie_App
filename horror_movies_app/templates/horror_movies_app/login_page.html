@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'horror_movies_app/css/login_page.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Harley's Horrors</h1>
+        </div>
+        <div class="login_box">
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <h1>Login</h1>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <p>Email: <input type="text" name="email" ></p>
+                <p>Password: <input type="password" name="password" ></p>
+                <input type="submit" value="Login" >
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>
